@@ -20,7 +20,7 @@ import { cn } from '@/lib/utils';
 
 const FormSchema = z.object({
   text: z.string().min(50, {
-    message: 'Please enter at least 50 characters to analyze.',
+    message: 'Please input at least 50 characters for analysis.',
   }),
 });
 
@@ -77,21 +77,21 @@ export default function ClarityFlowPage() {
   const isLoading = isPending || loadingState !== 'idle';
   const score = analysisResult ? Math.round(analysisResult.score * 100) : 0;
   const chartData = [{ name: 'score', value: score, fill: 'hsl(var(--primary))' }];
-  const scoreColor = score > 70 ? 'text-destructive' : score > 40 ? 'text-orange-500' : 'text-green-500';
+  const scoreColor = score > 70 ? 'text-destructive' : score > 40 ? 'text-yellow-500' : 'text-primary';
 
   return (
     <div className="flex min-h-dvh flex-col items-center p-4 sm:p-6 lg:p-8">
       <header className="flex items-center gap-3 py-8">
         <Logo className="h-10 w-10" />
-        <h1 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">ClarityFlow</h1>
+        <h1 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">CyberClarity</h1>
       </header>
 
       <main className="w-full max-w-3xl">
-        <Card className="shadow-lg">
+        <Card className="glowing-card">
           <CardHeader>
-            <CardTitle className="font-headline text-2xl">Analyze & Humanize Text</CardTitle>
+            <CardTitle className="font-headline text-2xl">Analyze & De-Synth Text</CardTitle>
             <CardDescription>
-              Paste your text below to check for AI-generated content and rewrite it with a more human touch.
+              Interface with the neural-net to analyze AI-generated text and rewrite it for human resonance.
             </CardDescription>
           </CardHeader>
           <Form {...form}>
@@ -105,8 +105,8 @@ export default function ClarityFlowPage() {
                       <FormLabel className="sr-only">Text to analyze</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="Enter text to analyze..."
-                          className="min-h-[200px] resize-y text-base"
+                          placeholder="Initiate analysis by inputting text here..."
+                          className="min-h-[200px] resize-y"
                           {...field}
                         />
                       </FormControl>
@@ -151,11 +151,11 @@ export default function ClarityFlowPage() {
         {(analysisResult || rewrittenText) && (
           <div className="mt-8 grid gap-8 md:grid-cols-2" data-state="open" data-animate-in>
             {analysisResult && (
-              <Card className="animate-in fade-in-0 zoom-in-95 duration-500">
+              <Card className="animate-in fade-in-0 zoom-in-95 duration-500 glowing-card">
                 <CardHeader>
                   <CardTitle className="font-headline flex items-center gap-2">
                     <Bot className="h-5 w-5" />
-                    AI Detection Score
+                    AI Singularity Score
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col items-center justify-center">
@@ -190,25 +190,25 @@ export default function ClarityFlowPage() {
                      <span className={cn('text-5xl font-bold tracking-tighter font-headline', scoreColor)}>
                       {score}%
                     </span>
-                    <p className="text-muted-foreground">AI-Generated Likelihood</p>
+                    <p className="text-muted-foreground">AI Singularity Probability</p>
                   </div>
                 </CardContent>
               </Card>
             )}
 
             {rewrittenText && (
-              <Card className="animate-in fade-in-0 zoom-in-95 duration-500 md:col-start-2">
+              <Card className="animate-in fade-in-0 zoom-in-95 duration-500 md:col-start-2 glowing-card-accent">
                 <CardHeader>
                   <CardTitle className="font-headline flex items-center justify-between">
                     <div className='flex items-center gap-2'>
                       <Sparkles className="h-5 w-5" />
-                      Humanized Text
+                      Human-Resonant Text
                     </div>
                     <CopyButton text={rewrittenText} />
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground whitespace-pre-wrap">{rewrittenText}</p>
+                  <p className="text-muted-foreground whitespace-pre-wrap font-body">{rewrittenText}</p>
                 </CardContent>
               </Card>
             )}

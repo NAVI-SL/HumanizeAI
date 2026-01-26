@@ -6,21 +6,15 @@ export const Logo = ({ className }: { className?: string }) => (
     viewBox="0 0 100 100"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    aria-label="ClarityFlow Logo"
+    aria-label="CyberClarity Logo"
   >
-    <path
-      d="M30 70C30 81.0457 38.9543 90 50 90C61.0457 90 70 81.0457 70 70L70 30C70 18.9543 61.0457 10 50 10C38.9543 10 30 18.9543 30 30"
-      stroke="currentColor"
-      strokeWidth="12"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M30 30C30 41.0457 38.9543 50 50 50C61.0457 50 70 41.0457 70 30"
-      stroke="currentColor"
-      strokeWidth="12"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+    <path d="M50 10 V 30" stroke="currentColor" strokeWidth="8" strokeLinecap="round"/>
+    <path d="M50 70 V 90" stroke="currentColor" strokeWidth="8" strokeLinecap="round"/>
+    <path d="M10 50 H 30" stroke="currentColor" strokeWidth="8" strokeLinecap="round"/>
+    <path d="M70 50 H 90" stroke="currentColor" strokeWidth="8" strokeLinecap="round"/>
+
+    <rect x="30" y="30" width="40" height="40" rx="5" stroke="currentColor" strokeWidth="8" strokeLinejoin="round" strokeLinecap="round"/>
+
+    <circle cx="50" cy="50" r="8" fill="currentColor" />
+</svg>
 );
