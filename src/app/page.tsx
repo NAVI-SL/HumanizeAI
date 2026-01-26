@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Bot, Loader2, Sparkles, Wand2 } from 'lucide-react';
-import { useState, useTransition } from 'react';
+import { useState, useTransition, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { PolarGrid, RadialBar, RadialBarChart } from 'recharts';
 import { z } from 'zod';
@@ -36,6 +36,7 @@ export default function ClarityFlowPage() {
   const [loadingState, setLoadingState] = useState<LoadingState>('idle');
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
+  const [animatedScore, setAnimatedScore] = useState(0);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -43,6 +44,31 @@ export default function ClarityFlowPage() {
       text: '',
     },
   });
+
+  useEffect(() => {
+    if (!analysisResult) {
+      setAnimatedScore(0);
+      return;
+    }
+
+    const finalScore = Math.round(analysisResult.score * 100);
+    let animationFrameId: number;
+    let startTimestamp: number | null = null;
+    const duration = 1000;
+
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      setAnimatedScore(Math.floor(progress * finalScore));
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(step);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(step);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [analysisResult]);
 
   const onSubmit = (values: z.infer<typeof FormSchema>, action: 'analyze' | 'humanize') => {
     startTransition(async () => {
@@ -75,9 +101,8 @@ export default function ClarityFlowPage() {
   };
 
   const isLoading = isPending || loadingState !== 'idle';
-  const score = analysisResult ? Math.round(analysisResult.score * 100) : 0;
-  const chartData = [{ name: 'score', value: score, fill: 'hsl(var(--primary))' }];
-  const scoreColor = score > 70 ? 'text-destructive' : score > 40 ? 'text-yellow-500' : 'text-primary';
+  const chartData = [{ name: 'score', value: animatedScore, fill: 'hsl(var(--primary))' }];
+  const scoreColor = animatedScore > 70 ? 'text-destructive' : animatedScore > 40 ? 'text-yellow-500' : 'text-primary';
 
   return (
     <div className="flex min-h-dvh flex-col items-center p-4 sm:p-6 lg:p-8">
@@ -159,7 +184,7 @@ export default function ClarityFlowPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col items-center justify-center">
-                  <ChartContainer config={{}} className="mx-auto aspect-square h-[200px] w-full">
+                  <ChartContainer config={{}} className="mx-auto aspect-square h-[180px] w-full">
                     <RadialBarChart
                       data={chartData}
                       startAngle={-270}
@@ -179,6 +204,7 @@ export default function ClarityFlowPage() {
                         background
                         cornerRadius={10}
                         className="fill-primary"
+                        isAnimationActive={false}
                       />
                       <ChartTooltip
                         cursor={false}
@@ -186,9 +212,9 @@ export default function ClarityFlowPage() {
                       />
                     </RadialBarChart>
                   </ChartContainer>
-                  <div className="flex flex-col items-center -mt-24">
+                  <div className="flex flex-col items-center -mt-20">
                      <span className={cn('text-5xl font-bold tracking-tighter font-headline', scoreColor)}>
-                      {score}%
+                      {animatedScore}%
                     </span>
                     <p className="text-muted-foreground">AI Singularity Probability</p>
                   </div>
