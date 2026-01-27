@@ -198,7 +198,7 @@ export default function ClarityFlowPage() {
                 </CardHeader>
                 <CardContent className="flex flex-col items-center justify-center py-10">
                   <div className="flex flex-col items-center justify-center">
-                    <span className="font-headline text-3xl font-bold tracking-tighter text-blue-400">
+                    <span className="font-headline text-3xl font-bold tracking-tighter text-primary">
                       {animatedScore}%
                     </span>
                   </div>
