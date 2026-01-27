@@ -184,39 +184,41 @@ export default function ClarityFlowPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col items-center justify-center">
-                  <ChartContainer config={{}} className="mx-auto aspect-square h-[180px] w-full">
-                    <RadialBarChart
-                      data={chartData}
-                      startAngle={-270}
-                      endAngle={90}
-                      innerRadius="70%"
-                      outerRadius="100%"
-                      barSize={20}
-                    >
-                      <PolarGrid
-                        gridType="circle"
-                        radialLines={false}
-                        stroke="none"
-                        className="fill-muted"
-                      />
-                      <RadialBar
-                        dataKey="value"
-                        background
-                        cornerRadius={10}
-                        className="fill-primary"
-                        isAnimationActive={false}
-                      />
-                      <ChartTooltip
-                        cursor={false}
-                        content={<ChartTooltipContent hideLabel />}
-                      />
-                    </RadialBarChart>
-                  </ChartContainer>
-                  <div className="flex flex-col items-center -mt-20">
-                     <span className={cn('text-5xl font-bold tracking-tighter font-headline', scoreColor)}>
-                      {animatedScore}%
-                    </span>
-                    <p className="text-muted-foreground">AI Singularity Probability</p>
+                  <div className="relative h-[180px] w-[180px]">
+                    <ChartContainer config={{}} className="absolute inset-0">
+                      <RadialBarChart
+                        data={chartData}
+                        startAngle={-270}
+                        endAngle={90}
+                        innerRadius="80%"
+                        outerRadius="100%"
+                        barSize={15}
+                      >
+                        <PolarGrid
+                          gridType="circle"
+                          radialLines={false}
+                          stroke="none"
+                          className="fill-muted/30"
+                        />
+                        <RadialBar
+                          dataKey="value"
+                          background
+                          cornerRadius={10}
+                          className="fill-primary"
+                          isAnimationActive={false}
+                        />
+                        <ChartTooltip
+                          cursor={false}
+                          content={<ChartTooltipContent hideLabel />}
+                        />
+                      </RadialBarChart>
+                    </ChartContainer>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <span className={cn('text-4xl font-bold tracking-tighter font-headline', scoreColor)}>
+                        {animatedScore}%
+                      </span>
+                      <p className="text-xs text-muted-foreground">AI Probability</p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
