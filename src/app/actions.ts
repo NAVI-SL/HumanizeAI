@@ -9,7 +9,7 @@ const textSchema = z.string().min(50, { message: 'Please enter at least 50 chara
 export async function handleAnalyzeText(text: string) {
   try {
     const validatedText = textSchema.parse(text);
-    const result = await analyzeTextForAIContent(validatedText);
+    const result = await analyzeTextForAIContent({ text: validatedText });
     return { success: true, data: result };
   } catch (error) {
     if (error instanceof z.ZodError) {
