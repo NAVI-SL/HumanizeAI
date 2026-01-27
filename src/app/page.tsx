@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Bot, Loader2, Sparkles, Wand2 } from 'lucide-react';
+import { Bot, Loader2, RotateCcw, Sparkles, Wand2 } from 'lucide-react';
 import { useState, useTransition, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -98,6 +98,13 @@ export default function ClarityFlowPage() {
     });
   };
 
+  const handleReset = () => {
+    form.reset({ text: '' });
+    setAnalysisResult(null);
+    setRewrittenText(null);
+    setLoadingState('idle');
+  };
+
   const isLoading = isPending || loadingState !== 'idle';
 
   return (
@@ -164,6 +171,16 @@ export default function ClarityFlowPage() {
                   )}
                   Humanize
                 </Button>
+                <Button
+                  type="button"
+                  onClick={handleReset}
+                  disabled={isLoading}
+                  variant="secondary"
+                  className="w-full sm:w-auto"
+                >
+                  <RotateCcw className="mr-2 h-4 w-4" />
+                  Reset
+                </Button>
               </CardFooter>
             </form>
           </Form>
@@ -184,7 +201,6 @@ export default function ClarityFlowPage() {
                     <span className="font-headline text-5xl font-bold tracking-tighter text-blue-400">
                       {animatedScore}%
                     </span>
-                    <p className="text-sm text-blue-400/70">AI Probability</p>
                   </div>
                 </CardContent>
               </Card>
