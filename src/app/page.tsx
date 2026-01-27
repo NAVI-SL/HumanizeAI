@@ -102,7 +102,6 @@ export default function ClarityFlowPage() {
 
   const isLoading = isPending || loadingState !== 'idle';
   const chartData = [{ name: 'score', value: animatedScore, fill: 'hsl(var(--primary))' }];
-  const scoreColor = animatedScore > 70 ? 'text-destructive' : animatedScore > 40 ? 'text-yellow-500' : 'text-primary';
 
   return (
     <div className="flex min-h-dvh flex-col items-center p-4 sm:p-6 lg:p-8">
@@ -184,7 +183,7 @@ export default function ClarityFlowPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col items-center justify-center">
-                  <div className="relative h-[180px] w-[180px]">
+                  <div className="relative h-[160px] w-[160px]">
                     <ChartContainer config={{}} className="absolute inset-0">
                       <RadialBarChart
                         data={chartData}
@@ -214,7 +213,7 @@ export default function ClarityFlowPage() {
                       </RadialBarChart>
                     </ChartContainer>
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <span className={cn('text-4xl font-bold tracking-tighter font-headline', scoreColor)}>
+                      <span className="text-3xl font-bold tracking-tighter font-headline text-primary">
                         {animatedScore}%
                       </span>
                       <p className="text-xs text-muted-foreground">AI Probability</p>
