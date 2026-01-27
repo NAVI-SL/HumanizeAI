@@ -212,11 +212,11 @@ export default function ClarityFlowPage() {
                         />
                       </RadialBarChart>
                     </ChartContainer>
-                    <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <span className="text-3xl font-bold tracking-tighter font-headline text-primary">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center pt-2">
+                      <span className="font-headline text-xl font-bold tracking-tighter text-blue-400">
                         {animatedScore}%
                       </span>
-                      <p className="text-xs text-muted-foreground">AI Probability</p>
+                      <p className="text-xs text-blue-400/70">AI Probability</p>
                     </div>
                   </div>
                 </CardContent>
