@@ -187,7 +187,7 @@ export default function ClarityFlowPage() {
         </Card>
 
         {(analysisResult || rewrittenText) && (
-          <div className="mt-8 grid gap-8 md:grid-cols-2" data-state="open" data-animate-in>
+          <div className="mt-8 grid gap-8" data-state="open" data-animate-in>
             {analysisResult && (
               <Card className="animate-in fade-in-0 zoom-in-95 duration-500 glowing-card">
                 <CardHeader>
@@ -207,13 +207,13 @@ export default function ClarityFlowPage() {
             )}
 
             {rewrittenText && (
-              <Card className="animate-in fade-in-0 zoom-in-95 duration-500 md:col-start-2 glowing-card-accent">
+              <Card className="animate-in fade-in-0 zoom-in-95 duration-500 glowing-card-accent">
                 <CardHeader>
                   <CardTitle className="font-headline flex items-center justify-between">
-                    <div className='flex items-center gap-2'>
+                    <span className='flex items-center gap-2'>
                       <Sparkles className="h-5 w-5" />
                       Human-Resonant Text
-                    </div>
+                    </span>
                     <CopyButton text={rewrittenText} />
                   </CardTitle>
                 </CardHeader>
