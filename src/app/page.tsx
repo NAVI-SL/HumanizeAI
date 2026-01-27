@@ -111,15 +111,15 @@ export default function ClarityFlowPage() {
     <div className="flex min-h-dvh flex-col items-center p-4 sm:p-6 lg:p-8">
       <header className="flex items-center gap-3 py-8">
         <Logo className="h-10 w-10" />
-        <h1 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">CyberClarity</h1>
+        <h1 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">ClarityFlow</h1>
       </header>
 
       <main className="w-full max-w-3xl">
         <Card className="glowing-card">
           <CardHeader>
-            <CardTitle className="font-headline text-2xl">Analyze & De-Synth Text</CardTitle>
+            <CardTitle className="font-headline text-2xl">Analyze & Humanize Text</CardTitle>
             <CardDescription>
-              Interface with the neural-net to analyze AI-generated text and rewrite it for human resonance.
+             Enter text to analyze for AI content and rewrite it to sound more human.
             </CardDescription>
           </CardHeader>
           <Form {...form}>
@@ -133,7 +133,7 @@ export default function ClarityFlowPage() {
                       <FormLabel className="sr-only">Text to analyze</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="Initiate analysis by inputting text here..."
+                          placeholder="Enter text here..."
                           className="min-h-[200px] resize-y"
                           {...field}
                         />
@@ -193,12 +193,12 @@ export default function ClarityFlowPage() {
                 <CardHeader>
                   <CardTitle className="font-headline flex items-center gap-2">
                     <Bot className="h-5 w-5" />
-                    AI Singularity Score
+                    AI Detection Score
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col items-center justify-center py-10">
                   <div className="flex flex-col items-center justify-center">
-                    <span className="font-headline text-5xl font-bold tracking-tighter text-blue-400">
+                    <span className="font-headline text-3xl font-bold tracking-tighter text-blue-400">
                       {animatedScore}%
                     </span>
                   </div>
@@ -212,7 +212,7 @@ export default function ClarityFlowPage() {
                   <CardTitle className="font-headline flex items-center justify-between">
                     <span className='flex items-center gap-2'>
                       <Sparkles className="h-5 w-5" />
-                      Human-Resonant Text
+                      Humanized Text
                     </span>
                     <CopyButton text={rewrittenText} />
                   </CardTitle>

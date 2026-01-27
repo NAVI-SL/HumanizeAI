@@ -6,7 +6,7 @@ export const Logo = ({ className }: { className?: string }) => (
     viewBox="0 0 100 100"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    aria-label="CyberClarity Logo"
+    aria-label="ClarityFlow Logo"
   >
     <path d="M50 10 V 30" stroke="currentColor" strokeWidth="8" strokeLinecap="round"/>
     <path d="M50 70 V 90" stroke="currentColor" strokeWidth="8" strokeLinecap="round"/>
