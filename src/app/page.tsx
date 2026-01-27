@@ -4,7 +4,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Bot, Loader2, Sparkles, Wand2 } from 'lucide-react';
 import { useState, useTransition, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { PolarGrid, RadialBar, RadialBarChart } from 'recharts';
 import { z } from 'zod';
 
 import { handleAnalyzeText, handleRewriteText } from '@/app/actions';
@@ -12,7 +11,6 @@ import { CopyButton } from '@/components/copy-button';
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
@@ -101,7 +99,6 @@ export default function ClarityFlowPage() {
   };
 
   const isLoading = isPending || loadingState !== 'idle';
-  const chartData = [{ name: 'score', value: animatedScore, fill: 'hsl(var(--primary))' }];
 
   return (
     <div className="flex min-h-dvh flex-col items-center p-4 sm:p-6 lg:p-8">
@@ -182,42 +179,12 @@ export default function ClarityFlowPage() {
                     AI Singularity Score
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-col items-center justify-center">
-                  <div className="relative h-[160px] w-[160px]">
-                    <ChartContainer config={{}} className="absolute inset-0">
-                      <RadialBarChart
-                        data={chartData}
-                        startAngle={-270}
-                        endAngle={90}
-                        innerRadius="80%"
-                        outerRadius="100%"
-                        barSize={15}
-                      >
-                        <PolarGrid
-                          gridType="circle"
-                          radialLines={false}
-                          stroke="none"
-                          className="fill-muted/30"
-                        />
-                        <RadialBar
-                          dataKey="value"
-                          background
-                          cornerRadius={10}
-                          className="fill-primary"
-                          isAnimationActive={false}
-                        />
-                        <ChartTooltip
-                          cursor={false}
-                          content={<ChartTooltipContent hideLabel />}
-                        />
-                      </RadialBarChart>
-                    </ChartContainer>
-                    <div className="absolute inset-0 flex flex-col items-center justify-center pt-2">
-                      <span className="font-headline text-xl font-bold tracking-tighter text-blue-400">
-                        {animatedScore}%
-                      </span>
-                      <p className="text-xs text-blue-400/70">AI Probability</p>
-                    </div>
+                <CardContent className="flex flex-col items-center justify-center py-10">
+                  <div className="flex flex-col items-center justify-center">
+                    <span className="font-headline text-5xl font-bold tracking-tighter text-blue-400">
+                      {animatedScore}%
+                    </span>
+                    <p className="text-sm text-blue-400/70">AI Probability</p>
                   </div>
                 </CardContent>
               </Card>
