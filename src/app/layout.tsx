@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'ClarityFlow',
+  title: 'HumanizeAI',
   description: 'Analyze & humanize text for the new age.',
 };
 

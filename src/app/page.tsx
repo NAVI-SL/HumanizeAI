@@ -28,7 +28,7 @@ type AnalysisResult = {
 
 type LoadingState = 'idle' | 'analyzing' | 'humanizing';
 
-export default function ClarityFlowPage() {
+export default function HumanizeAIPage() {
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult>(null);
   const [rewrittenText, setRewrittenText] = useState<string | null>(null);
   const [loadingState, setLoadingState] = useState<LoadingState>('idle');
@@ -111,7 +111,7 @@ export default function ClarityFlowPage() {
     <div className="flex min-h-dvh flex-col items-center p-4 sm:p-6 lg:p-8">
       <header className="flex items-center gap-3 py-8">
         <Logo className="h-10 w-10" />
-        <h1 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">ClarityFlow</h1>
+        <h1 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">HumanizeAI</h1>
       </header>
 
       <main className="w-full max-w-3xl">
